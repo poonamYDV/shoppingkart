@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		div{
+			-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+            width:100%;
+            height:20%;
+            position:fixed;
+            top:0vh;
+            left: 0vw;
+
+		}
+		h1{
+			position: absolute;
+			left:40vw;
+			top:3vh;
+		}
+		label{
+			position: absolute;
+			font-size: 3vh;
+			top:10vh;
+			left: 70vw;
+		}
+		#logout{
+			position: absolute;
+			top:7vh;
+			left: 10vw;
+			width: 10vw;
+			height: 7vh;
+			font-size: 3vh;
+		}
+		#logout:hover{
+			cursor: pointer;
+			background-color:#ff9933;
+		}
+		#options{
+			position: absolute;
+			left: 0vw;
+			top:20%;
+			width:20vw;
+			height: 80%;
+			border-right-style: bold;
+		}
+		button{
+           width:100%;
+           height: 25%;
+           font-size: 4vh;
+		}
+		button:hover{
+           width:100%;
+           height: 25%;
+           font-size: 4vh;
+           background-color: #BCF1ED;
+           cursor: pointer;
+          
+		}
+		#changePassword
+		{
+			display: none;
+			position: absolute;
+			top:20vh;
+			left: 20vw;
+			font-size: 7vh;
+			box-shadow: none;
+			 width: 80vw;
+           height:80vh;
+		}
+		#oldPasswordLabel{
+			position: absolute;
+			top:10vh;
+			left: 20vw;
+			font-size: 6vh;
+		}
+		#newPasswordLabel{
+			position: absolute;
+			top:30vh;
+			left: 20vw;
+			font-size: 6vh;
+		}
+		input
+		{
+			border-top-style: none;
+			border-left-style: none;
+			border-right-style: none;
+			outline: none;
+			width: 40vw;
+			font-size: 6vh;
+
+		}
+		input:hover{
+			outline: none;
+		}
+		#oldPassword{
+			position: absolute;
+			left: 20vw;
+			top:20vh;
+		}
+		#newPassword{
+			position: absolute;
+			left: 20vw;
+			top:40vh;
+		}
+		#changePasswordButton{
+			position: absolute;
+			width:10vw;
+			height: 10vh;
+			border-radius: 2vh;
+			left: 20vw;
+			top:60vh;
+		}
+		#changePasswordButton:hover
+		{
+         cursor: pointer;
+         background-color: #ff9933;
+		}
+		#cancelPasswordButton:hover
+		{
+         cursor: pointer;
+         background-color: #ff9933;
+		}
+		#cancelPasswordButton{
+			position: absolute;
+			width:10vw;
+			height: 10vh;
+			border-radius: 2vh;
+			left: 60vw;
+			top:60vh;
+		}
+        #addItem{
+        	display: none;
+        	position: absolute;
+        	top:20vh;
+        	left: 20vw;  
+        	box-shadow: none;
+        }
+        #nameAddItem{
+        	position: absolute;
+        	top:5vh;
+        	left: 5vw; 
+        }
+         #descriptionAddItem{
+        	position: absolute;
+        	top:20vh;
+        	left: 5vw; 
+        }
+         #addItemQuantity{
+        	position: absolute;
+        	top:35vh;
+        	left: 5vw; 
+        }
+        #addItemPrice{
+        	position: absolute;
+        	top:50vh;
+        	left: 5vw; 
+        }
+          #addItemImage1{
+        	position: absolute;
+        	top:5vh;
+        	left: 45vw; 
+        }
+         #addItemImage2{
+        	position: absolute;
+        	top:20vh;
+        	left: 45vw; 
+        }
+         #addItemImage3{
+        	position: absolute;
+        	top:35vh;
+        	left: 45vw; 
+        }
+        #addItemImage4{
+        	position: absolute;
+        	top:50vh;
+        	left: 45vw; 
+        }
+        #inputNameAddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:10vh;
+        	left: 5vw; 
+        	width: 20vw;
+        }
+         #inputDescriptionAddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:25vh;
+        	left: 5vw; 
+        	width: 20vw;
+        }
+         #inputQuantityAddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:40vh;
+        	left: 5vw; 
+        	width: 20vw;
+        }
+        #inputPriceAddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:55vh;
+        	left: 5vw; 
+        	width: 20vw;
+        }
+         #inputImage1AddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:10vh;
+        	left: 45vw; 
+        	width: 20vw;
+        }
+         #inputImage2AddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:25vh;
+        	left: 45vw; 
+        	width: 20vw;
+        }
+         #inputImage3AddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:40vh;
+        	left: 45vw; 
+        	width: 20vw;
+        }
+        #inputImage4AddItem
+        {
+        	font-size: 3vh;
+        	position: absolute;
+        	top:55vh;
+        	left: 45vw; 
+        	width: 20vw;
+        }
+        #addItemButton{
+			position: absolute;
+			width:10vw;
+			height: 10vh;
+			border-radius: 2vh;
+			left: 5vw;
+			top:65vh;
+		}
+		#addItemButton:hover
+		{
+         cursor: pointer;
+         background-color: #ff9933;
+		}
+		#cancelAddItemButton:hover
+		{
+         cursor: pointer;
+         background-color: #ff9933;
+		}
+		#cancelAddItemButton{
+			position: absolute;
+			width:10vw;
+			height: 10vh;
+			border-radius: 2vh;
+			left: 45vw;
+			top:65vh;
+		}
+		#removeItem{
+        	display: none;
+        	position: absolute;
+        	top:20vh;
+        	left: 20vw;  
+        	box-shadow: none;
+        	width: 80vw;
+        	height: 80vh;
+        	box-shadow: none;
+        }
+        #removeItemName
+        {
+        	position: absolute;
+        	left: 20vw;
+        	top:25vh;
+        	font-size: 6vh;
+        }
+        #removeItemButton
+        {
+        	position: absolute;
+        	left:25vw;
+        	top:60vh;
+        	width: 10vw;
+        	height: 7vh;
+
+        }
+        #cancelRemoveItemButton
+        {
+        	position: absolute;
+        	left:45vw;
+        	top:60vh;
+        	width: 10vw;
+        	height: 7vh;
+        	
+        }
+        #inputRemoveItemName
+        {
+        	position: absolute;
+        	left: 20vw;
+        	top:40vh;
+        }
+	</style>
+</head>
+<body onload='load()'>	
+<div id='div1'>	
+
+<h1>Welcome Admin</h1>
+</div>
+<label id='adminName'></label>
+<button id='logout' onclick="home()">Logout</button>
+<div id='options'>
+	<button onclick="add('addItem')">Add Item</button><br>
+	<button onclick="add('removeItem')">Remove Item</button><br>
+	<button onclick="update()">Update Item</button><br>
+	<button onclick="add('changePassword')">Change password</button><br>
+</div>	
+
+<div id='changePassword'>
+<label id='oldPasswordLabel'>Old Password</label><br><br>
+<input type='text' id='oldPassword'></input><br><br>
+<label id='newPasswordLabel'>New Password</label><br><br>
+<input type='text' id='newPassword'></input><br><br>
+<button id='changePasswordButton' onclick="changePassword()"">Change</button>
+<button id='cancelPasswordButton' onclick="cancel('changePassword')">Cancel</button>
+</div>
+
+<div id='addItem'>
+<label id='nameAddItem'>Name of Item.</label><br>
+<input type='text' id='inputNameAddItem'></input><br>
+<label id='descriptionAddItem'>Description</label><br>
+<input type='text' id='inputDescriptionAddItem'></input><br>
+<label id='addItemQuantity'>Quantity</label><br>
+<input type='number' id='inputQuantityAddItem'></input><br>
+
+<label id='addItemPrice'>Price</label><br>
+<input type='number' id='inputPriceAddItem'></input><br>
+
+<label id='addItemImage1'>Image1 File Name</label><br>
+<input type='text' id='inputImage1AddItem'></input><br>
+<label id='addItemImage2'>Image2 File Name</label><br>
+<input type='text' id='inputImage2AddItem'></input><br>
+
+<label id='addItemImage3'>Image3 File Name</label><br>
+<input type='text' id='inputImage3AddItem'></input><br>
+
+<label id='addItemImage4'>Image4 File Name</label><br>
+<input type='text' id='inputImage4AddItem'></input><br>
+
+<button id='addItemButton' onclick="addItem()">Add</button>
+<button id='cancelAddItemButton' onclick="cancel('addItem')">Cancel</button>
+</div>
+
+<div id='removeItem'>
+
+<label id='removeItemName'>Name of Item</label>
+<input type="text" id='inputRemoveItemName'></input>
+<button id='removeItemButton' onclick="removeItem()">Remove</button>
+<button id='cancelRemoveItemButton' onclick="cancel('removeItem')">Cancel</button>
+</div>
+</body>
+<script>
+	async function load()
+	{
+		 var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'}
+                   
+                   };
+		var response=await fetch('/dataAdmin',options);
+		var json=await response.json();
+		if(json.k==null)
+		{
+			alert('Session Logout');
+			window.location.replace('/');
+		}
+		document.getElementById('adminName').innerText=json.k.id;
+		document.getElementById('changePassword').style.display='none';
+	}
+
+    function home()
+    {
+    	window.location.replace('/');
+    }
+
+	function add(a)
+	{
+		if(a=='removeItem')
+			document.getElementById('removeItemButton').innerText='Remove';
+		
+        
+        cancel('removeItem');
+        cancel('addItem');
+        cancel('changePassword');
+
+
+		document.getElementById(a).style.display='initial';
+	}
+	function cancel(a)
+	{
+		
+		document.getElementById(a).style.display='none';
+	}
+	async function changePassword()
+	{
+	   var a=document.getElementById('oldPassword').value;
+	   var b=document.getElementById('newPassword').value;
+	   if(a.length==0||b.length==0)
+	   {
+	   	alert('Fields cannot be Empty');
+	   	return;
+	   }
+	   object={
+	   	old:a,
+	   	new:b,
+	   	db:'cartAdmin'
+	   };
+	   var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+                   };	
+        var response=await fetch('changePassword',options);
+        var json=await response.json();
+        alert(json.l);           
+	}
+
+	async function addItem()
+	{
+		var n=document.getElementById('inputNameAddItem').value;
+		var d=document.getElementById('inputDescriptionAddItem').value;
+		var q=document.getElementById('inputQuantityAddItem').value;
+		var p=document.getElementById('inputPriceAddItem').value;
+		var i1=document.getElementById('inputImage1AddItem').value;
+		var i2=document.getElementById('inputImage2AddItem').value;
+		var i3=document.getElementById('inputImage3AddItem').value;
+		var i4=document.getElementById('inputImage4AddItem').value;
+		if(n.length==0||d.length==0||q.length==0||p.length==0||i1.length==0||i2.length==0||i3.length==0||i4.length==0)
+		{
+			alert('Fields cannot be Empty');
+		}
+		else
+		{
+			 object={
+	   	            name:n,
+	            	description:d,
+	            	quantity:q,
+	            	price:p,
+	            	image1:i1,
+	            	image2:i2,
+	            	image3:i3,
+	            	image4:i4,
+	            	db:'cartItem'
+	           };
+	          var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+                   };	
+              var response=await fetch('addItem',options);
+              var json=await response.json();
+              alert(json.l);
+		}
+	}
+
+	async function removeItem()
+	{
+		var n=document.getElementById('inputRemoveItemName').value;
+		if(n.length==0)
+		{
+          alert('Fieds cannot be Empty');
+          return;
+		}
+		else
+		{
+		   object={
+	   	            name:n,
+	            	db:'cartItem'
+	           };
+	          var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+                   };	
+               var response=await fetch('removeItem',options);
+              var json=await response.json();
+              alert(json.l);
+		}
+	}
+
+    function update()
+	{
+		add('removeItem');
+		var a=document.getElementById('removeItemButton');
+		a.innerText='Update';
+        a.setAttribute('onclick','updateDatabase()');
+        console.log('update');
+	}
+
+	async function updateDatabase()
+	{
+		var n=document.getElementById('inputRemoveItemName').value;
+		if(n.length==0)
+		{
+          alert('Fieds cannot be Empty');
+          return;
+		}else
+		{
+		   object={
+	   	            name:n,
+	            	db:'cartItem'
+	           };
+	          var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+                   };	
+               var response=await fetch('find',options);
+              var json=await response.json();
+              if(json.k==null)
+              {
+              	alert(json.l);
+              	return;
+              }
+              else
+              {
+              	obj={
+	   	            name:json.k.name,
+	            	db:'cartItem'
+	           };
+	          var option={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(obj)
+                   };	
+               var response=await fetch('removeItem',option);
+              	add('addItem');
+              	var n=document.getElementById('inputNameAddItem');
+		        var d=document.getElementById('inputDescriptionAddItem');
+		        var q=document.getElementById('inputQuantityAddItem');
+	         	var p=document.getElementById('inputPriceAddItem');
+	        	var i1=document.getElementById('inputImage1AddItem');
+	         	var i2=document.getElementById('inputImage2AddItem');
+	        	var i3=document.getElementById('inputImage3AddItem');
+	        	var i4=document.getElementById('inputImage4AddItem');
+	        	n.value=json.k.name;
+	        	d.value=json.k.description;
+	        	q.value=json.k.q;
+	        	p.value=json.k.p;
+	        	i1.value=json.k.i1;
+	        	i2.value=json.k.i2;
+	        	i3.value=json.k.i3;
+	        	i4.value=json.k.i4;
+              }
+		}
+
+	}
+
+</script>
+</html>

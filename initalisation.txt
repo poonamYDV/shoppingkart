@@ -1,0 +1,14 @@
+1-- Monogo db should be installed and should br there in path
+2-- Node js project should pe intialized
+-- command is npm init
+3-- create a admin database in mongo
+commands are
+--
+mongodb ---for mac 
+mongo ---for windows
+then
+
+--use cartAdmin ---here cartAdmin is name of our admin Database and is given in javascript code of index.html
+--db.data.insert({id:'GauravPhalke@gmail.com',password:'Gaurav@001'})
+
+//you can give and id and password but variables name should be same as they are refered in node programmm

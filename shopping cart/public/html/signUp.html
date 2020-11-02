@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		div{
+			position: absolute;
+			height:80vh;
+			width: 60vw;
+			top:10vh;
+			left:20vw;
+			font-size: 4vh;
+			border-radius: 4vh;
+			-webkit-box-shadow: -1px 2px 4px 13px rgba(0,0,0,0.92);
+            -moz-box-shadow: -1px 2px 4px 13px rgba(0,0,0,0.92);
+            box-shadow: -1px 2px 4px 13px rgba(0,0,0,0.92);
+
+            
+		}
+		h1{
+			position: absolute;
+			left: 15vw;
+		}
+		#l1{
+			position: absolute;
+			top:20vh;
+			left: 10vw;
+		}
+		#l2{
+			position: absolute;
+			top:40vh;
+			left: 10vw;
+		}
+		#l3{
+			position: absolute;
+			top:60vh;
+			left: 10vw;
+		}
+		input
+		{
+			border-top-style: none;
+			border-left-style: none;
+			border-right-style: none;
+			outline: none;
+			width: 30vw;
+			font-size: 4vh;
+		}
+		input:hover{
+			outline: none;
+		}
+		#mail
+		{
+			position: absolute;
+			top:30vh;
+			left: 10vw;
+		}
+		#password
+		{
+			position: absolute;
+			top:50vh;
+			left: 10vw;
+		}
+		#image
+		{
+			position: absolute;
+			top:70vh;
+			left: 10vw;
+		}
+		#formButton1{
+			position: absolute;
+			top:30vh;
+			left: 45vw;
+			width:20vh;
+			height: 7vh;
+			font-size: 3vh;
+		}
+		#formButton1:hover{
+			cursor: pointer;
+			background-color: #ff9933;
+		}
+		#formButton2{
+			position: absolute;
+			top:55vh;
+			left: 45vw;
+			width:20vh;
+			height: 7vh;
+			font-size: 3vh;
+		}
+		#formButton2:hover{
+			cursor: pointer;
+			background-color: #ff9933;
+		}
+	</style>
+</head>
+<body>
+<div  class='form'>
+ 	    <h1> Sign Up</h1>
+    	<label id='l1'> Enter Email Id.</label><br><br><br><br>
+    	<input type='text' id='mail'></input><br><br><br><br>
+    	<label id='l2'> Enter Password</label><br><br><br><br>
+    	<input type='text' id='password'></input><br><br><br><br>
+    	<label id='l3'> Enter Profile Image File  (Optional). </label><br><br><br><br>
+    	<input type='text' id='image'></input><br><br><br><br>
+    	<button id='formButton1' onclick='verify()'>SignUp</button>
+    	<button id='formButton2' onclick='home()'>HomePage</button>
+    </div>	
+</body>
+<script>
+	function home()
+	{
+		window.location.replace('/');
+	}
+
+	async function verify()
+	{
+		var a=document.getElementById('mail').value;
+		var b=document.getElementById('password').value;
+		var c=document.getElementById('image').value;
+		if(a.length==0||b.length==0)
+		{
+			alert('Fields Cannot be Empty');
+			return;
+		}
+		else
+		{
+			var image=null;
+			if(c.length==0)
+			{
+              image=null;
+			}
+			else
+			{
+				image=c;
+			}
+			console.log('here');
+			var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            if(a.match(mailformat))
+            {
+             
+              }
+            else
+            {
+               alert("You have entered an invalid email address!");
+               
+                return;
+              }
+              object={
+              	mail:a,
+              	db:'cartUser'
+              };
+              var option={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+                   };
+              var response=await fetch('/findUser',option);
+              var json=await response.json();
+              if(json.k!=null)
+              {
+              	alert(json.l);
+              	return;
+              }
+             else
+             { 
+              obj={
+                 mail:a,
+                 password:b,
+                 profileImage:image,
+                  db:'cartUser'
+                    };
+              var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(obj)
+                   };
+              var response=await fetch('/signUp',options);
+              var json=await response.json();
+              alert(json.l);
+              window.alert.replace('/');
+          }
+		}
+	}
+</script>	
+</html>

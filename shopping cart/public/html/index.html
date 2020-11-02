@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		#div1{
+			-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.75);
+            width:100%;
+            height:20%;
+            position:fixed;
+            top:0vh;
+            left: 0vw;
+            background-color: white;
+            z-index: 5;
+		}
+		h1{
+			font-size: 6vh;
+			position: relative;
+			top:3vh;
+			left:40vw;
+			z-index: 5;
+		}
+		#login{
+			position: fixed;
+			top:5vh;
+			left:70vw;
+			font-size: 4vh;
+			z-index: 5;
+		}
+		#username{
+			position: fixed;
+			top:5vh;
+			left:70vw;
+			font-size: 4vh;
+			z-index: 5;
+			display: none;
+		}
+		#signup{
+			position: fixed;
+			top:5vh;
+			left:20vw;
+			font-size: 4vh;
+			z-index: 5;
+		}
+		#logout{
+			position: fixed;
+			top:5vh;
+			left:20vw;
+			font-size: 4vh;
+			z-index: 5;
+			border-radius: 1px;
+			display: none;
+		}
+		#logout:hover{
+          cursor: pointer;
+          background-color: red;
+
+		}
+		#admin{
+			position: fixed;
+			top:5vh;
+			left:80vw;
+			font-size: 4vh;
+			z-index: 5;
+
+		}
+		.item{
+			
+
+             -webkit-box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+             -moz-box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+              box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+              width: 72vw;
+              height: 70vh;
+              border: 1px dotted blue;
+            }
+           .image1
+           {
+           	position: relative;
+           	left: 0vw;
+           	width:40vw;
+           	height:40vh;
+           } 
+            .image2
+           {
+           	position: relative;
+           	left: -40vw;
+           	top:30vh;
+           	width:23vw;
+           	height:30vh;
+           } 
+           .image3
+           {
+           	position: relative;
+           	left: 23vw;
+           	top:-1vh;
+           	width:23vw;
+           	height:30vh;
+           } 
+            .image4
+           {
+           	position: relative;
+           	left: 23vw;
+           	top:-1vh;
+           	width:23vw;
+           	height:30vh;
+           } 
+           .price
+           {
+           		position: relative;
+           		left:0vw;
+           		top:-65vh;
+           		font-size: 3vh;
+           		
+           		color: black;
+           		}
+
+        .discription{
+        	   position: relative;
+           		left:-5.5vw;
+           		top:-60vh;
+           		font-size: 3vh;
+           		
+           		color: black;
+        }
+         .quantity{
+        	   position: relative;
+           		left:-16vw;
+           		top:-50vh;
+           		font-size: 3vh;
+           		
+           		color: black;
+        }
+         .button{
+        	   position: relative;
+           		left:46vw;
+           		top:-40vh;
+           		font-size: 3vh;
+           		border-radius: 1px;
+           		background-color: red;
+           		color:white;
+        }
+        #cart
+        {
+        	position: fixed;
+        	z-index: 5;
+        	top:40vh;
+        	left:2vw;
+        	width: 10vw;
+        	height: 7vh;
+        	background-color: #ff3399;
+        	font-size: 3vh;
+
+        }
+        #cart:hover
+        {
+        	background-color: green;
+        }
+        button:hover{
+        	cursor: pointer;
+        	background-color: green;
+        }
+		a:hover{
+			color:red;
+			cursor: pointer;
+		}
+		img{
+			position: absolute;
+			top:0vh;
+			left:1vw;
+			width:10vw;
+			height:20vh;
+		}
+		#items
+		{
+			position: absolute;
+			left:20vw;
+			top:30vh;
+			}
+	</style>	
+</head>
+<body onload="load()">
+<div id='div1'>	
+
+<img src='./images/default.png' id='profilePicture'/>
+
+<h1>Welcome to E-Cart</h1>
+</div>
+<a id='login' href="./html/login.html">Login</a>
+<a id='admin' href="./html/adminLogin.html">Admin</a>
+<a id='signup' href="./html/signUp.html">Sign Up</a>
+<label id='username'></label>
+<button id='logout' onclick='logoutUser()'>Logout</button>
+<button id='cart' onclick='myCart()'>MyCart</button>
+<div id='items'>
+</div>	
+
+</body>
+<script>
+	var arr=null;
+	async function load()
+	{  
+		
+        var option={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'}
+         };
+        var response=await fetch('/dataUser',option);
+        var js=await response.json();
+        console.log(js.k);
+        if(js.k==null)
+        {
+           document.getElementById('signup').style.display='initial';
+           document.getElementById('login').style.display='initial';
+           document.getElementById('admin').style.display='initial';
+           document.getElementById('logout').style.display='none';
+           document.getElementById('cart').style.display='none';
+            document.getElementById('username').style.display='none';
+        }
+        else
+        {
+             document.getElementById('signup').style.display='none';
+           document.getElementById('login').style.display='none';
+           document.getElementById('admin').style.display='none';
+           document.getElementById('logout').style.display='initial';
+            document.getElementById('cart').style.display='initial';
+            var name=document.getElementById('username');
+            name.style.display='initial';
+			name.innerText=js.k.id;
+			document.getElementById('profileImage').src=js.k.profileImage;
+			
+
+        }
+		object={
+	            	db:'cartItem'
+	           };
+	    var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+         }; 
+		var response=await fetch('allFind',options);
+		var json=await response.json();
+        arr=json.k;
+        var items=document.getElementById('items');
+        var j=0;
+        for(i of arr)
+        {
+
+        	var div=document.createElement('div');
+        	
+        	div.setAttribute("class","item");
+        	var i1=document.createElement('img');
+        	i1.src='./images/'+i.i1;
+        	
+        	i1.setAttribute('class','image1');
+        	
+        	div.appendChild(i1);
+        	var i2=document.createElement('img');
+        	i2.src='./images/'+i.i2;
+        	
+        	i2.setAttribute('class','image2');
+        	
+        	div.appendChild(i2);
+        	var i3=document.createElement('img');
+        	i3.src='./images/'+i.i3;
+        	
+        	i3.setAttribute('class','image3');
+        	
+        	div.appendChild(i3);
+        	var i4=document.createElement('img');
+        	i4.src='./images/'+i.i4;
+        	
+        	i4.setAttribute('class','image4');
+        	
+        	div.appendChild(i4);
+
+        	var price=document.createElement('label');
+        	price.setAttribute('class','price');
+        	price.innerText='Price : '+i.p;
+        	div.appendChild(price);
+
+            
+        	var discription=document.createElement('label');
+        	discription.setAttribute('class','discription');
+        	discription.innerText='Discription : '+i.description;
+        	div.appendChild(discription);
+
+        	var quantity=document.createElement('label');
+        	quantity.setAttribute('class','quantity');
+        	quantity.innerText='Quantity : '+i.q;
+        	div.appendChild(quantity);
+
+        	var button=document.createElement('button');
+        	button.innerText='Add to Cart';
+        	button.setAttribute('class','button');
+
+        	if(js.k==null)
+        	{
+              button.setAttribute('onclick',`askLogin()`);
+        	}
+        	else
+        	{
+        	button.setAttribute('onclick',`addCart(${j})`);
+             }
+        	div.appendChild(button);
+
+        	items.appendChild(div);
+            j=j+1;
+        }
+        
+	}
+	async function addCart(x)
+	{
+    object={
+      x:arr[x],
+    }
+		var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+         }; 
+    var response=await fetch('/addCart',options);
+    var json=await response.json();
+    alert(json.l);
+	}
+	function askLogin()
+	{
+		alert('Login to add Elements');
+	}
+
+	async function logoutUser()
+	{
+
+	    var options={
+                   method: 'POST',
+                   headers: { 'Content-type': 'application/json'},
+                   body:JSON.stringify(object)
+         }; 
+		var response=await fetch('/logoutUser',options);
+		window.location.replace('/');
+
+	}
+
+  function myCart()
+  {
+    window.location.replace('/myCart.html');
+  }
+</script>
+</html>
